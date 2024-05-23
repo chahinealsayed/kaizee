@@ -1,0 +1,96 @@
+{% content get('id') %}
+{% contents type="news" category=get('cid') %}
+{% set list = [] %}
+{% for item in contents %}
+	{% set list = list|merge([item.id]) %}
+{% endfor %}
+{% set nextid = null %}
+{% set previd = null %}
+{% set found = false %}
+{% set lastid = null %}
+{% for item in list %}
+	{% if found %}
+		{% set nextid = item %}
+		{% set found = false %}
+	{% endif %}
+	{% if item == get('id') %}
+		{% set previd = lastid %}
+		{% set found = true %}
+	{% endif %}
+	{% set lastid = item %}
+{% endfor %}
+{% endcontents %}
+<section class="section-newsdetail">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 item news bg-transparent order-0 order-lg-0">
+				<div class="card rounded-0 border-0 bg-transparent">
+					<img src="{{content.attrs.image.url}}">
+					<div class="deadline">
+						<div class="date d-flex justify-content-start">{{content.local.date}}</div>
+						<div class="type text-capitalize d-flex justify-content-end">
+							<div class="dots">
+								<span class="dot dot-sm dot-success"></span>
+							</div>
+							<span>{{ content.categories | map(cat => cat.local.title) | join(', ') }}</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-12 py-1 details order-2 order-lg-2">
+				<div class="text-capitalize py-3 title">{{content.local.title}}</div>
+				<p class="description text-muted">{{content.local.excerpt}}</p>
+			</div>
+			{% if isMobile() or isTablet() %}
+				{% if previd != null %}
+					<div class="col-6 text-start py-3  order-3 order-lg-3">
+						<a href="default/content?id={{previd}}&cid={{get('cid')}}" rel="prev">
+							<button class="btn btn-previous-next">Previous</button>
+						</a>
+					</div>
+				{% endif %}
+				{% if nextid != null %}
+					<div class="col-6 {% if previd == null %} text-start  {% else %}  text-end {% endif %} py-3  order-3 order-lg-3">
+						<a href="default/content?id={{nextid}}&cid={{get('cid')}}" rel="next">
+							<button class="btn btn-previous-next">Next</button>
+						</a>
+					</div>
+				{% endif %}
+			{% else %}
+				<div class="col-md-6  order-1 order-lg-1 right-img">
+					<div class="wrap">
+						<div class="overlay"></div>
+						{% if nextid != null  %}
+							{% content nextid %}
+							<div class="img">
+								<img src="{{content.attrs.image.url}}" alt="">
+							</div>
+							{% endcontent %}
+						{% else %}
+							<div class="img">
+								<img src="{{content.attrs.image.url}}" alt="">
+							</div>
+						{% endif %}
+						<div class="nextprev">
+							{% if nextid != null %}
+								<a href="default/content?id={{nextid}}&cid={{get('cid')}}" rel="next">
+									<div class="next">Next
+										<img src="public\images\green-left-arrow.svg" alt="">
+									</div>
+								</a>
+							{% endif %}
+							{% if previd != null %}
+								<a href="default/content?id={{previd}}&cid={{get('cid')}}" rel="prev">
+									<div class="next prev">Prev
+										<img width="25%" src="public\images\green-left-arrow.svg" alt="">
+									</div>
+								</a>
+							{% endif %}
+						</div>
+					</div>
+				</div>
+			{% endif %}
+		</div>
+	</div>
+</section>
+{% endcontent %}

@@ -1,0 +1,278 @@
+{{ "Home" | title }}
+{{ seo('home-' ~ language(), this.title, "", [], true) }}
+
+{% contents type="news" limit='2' %}
+<section>
+	<div class="swiper">
+		<div class="swiper-wrapper">
+			{% for item in contents %}
+				<div class="swiper-slide">
+					<div class="img">
+						<img src="{{item.attrs.image.url}}" alt="">
+						<div class="container">
+							<div class="row">
+								<div class="cnt col-sm-6">
+									<div class="subtitle1">{{item.attrs.subtitle1}}</div>
+									<div class="subtitle2">{{item.attrs.subtitle2}}
+									</div>
+									<div class="description"></div>
+									<div class="about py-2">
+										<a href="default/content?id={{item.id}}" class="btn btn-about">
+											Read More</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+		{% if isMobile() or isTablet() %}
+			{% else %}
+				<div class="swiper-button-next"></div>
+				<div class="swiper-button-prev"></div>
+		{% endif %}
+	</div>
+</section>
+{% endcontents %}
+
+{% content "cms.contents.default.welcome" %}
+<section class="section2">
+	<div class="container">
+		<div class="row row-one">
+			<div class="col-sm-6">
+				<div class="founded">
+					<span>{{content.local.subtitle1}}
+					</span>
+				</div>
+				<div class="year">
+					<span>{{content.local.subtitle2}}</span>
+				</div>
+				<div class="details">
+					<p class="s2-description" data-excerptt>{{ content.local.excerpt}}</p>
+					<div class="btn-holder">
+						<button data-excerpt="{{ content.local.excerpt }}" type="button" class="btn btn-read" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+							Continue Reading
+						</button>
+					</div>
+
+					<div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" style="display: none;" aria-hidden="true">
+						<div class=" modal-dialog modal-dialog-centered">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalCenterTitle">
+										Welcome Message
+									</h5>
+									<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+								</div>
+								<div class="modal-body">
+									<p>{{content.local.excerpt}}</p>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary button-close" data-bs-dismiss="modal">Close</button>
+									<a href="https://calendly.com/coach_ronyklayany/60min?back=1&amp;month=2023-06" class="btn btn-read" target="_blank">
+										Book Your Session</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-1"></div>
+			<div class="col-sm-5">
+				<div class="img">
+					<img src="{{content.attrs.image.url}}" alt="">
+					<span class="span1"></span>
+					<span class="span2"></span>
+					<span class="span3"></span>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{% endcontent %}
+
+<section class="section-3">
+	<div class="container container-consult">
+		<div class="row row-consult">
+			<div class="col-md-12">
+				<div class="consult">
+					<span>Coaching
+						<br>
+						Services</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+{% contents type="services" limit='3' %}
+<section class="section4 bg-transparent">
+	{% if isMobile() or isTablet() %}
+		<img src="public\images\mobile-services.jpg" alt="Big image" class="embedded_image bg-transparent">
+	{% else %}
+		<img src="public\images\service.png" alt="Big image" class="embedded_image bg-transparent">
+	{% endif %}
+	<div class="container">
+		<div class="row">
+			{% for item in contents %}
+				<div class="col-3">
+					<figure>
+						<a href="{{ url('/default/content', {id:'cms.contents.default.services.1'}) }}">
+							<img src="{{item.attrs.homeimage.url}}" alt="img">
+							<figcaption>{{item.local.title}}
+							</figcaption>
+						</a>
+					</figure>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+</section>
+{% endcontents %}
+
+
+{% categories type="courses"  limit="3" parent=null %}
+<div class="container section5">
+	<div class="row row-two">
+		<div class="col-md-12">
+			<div class="courses">
+				<span>Development Courses
+					<br>
+					&amp; Solutions</span>
+			</div>
+		</div>
+		<!-- <div class="col-md-2"></div> -->
+		<div class="row">
+			{% for item in categories %}
+				<div class="col-md-4">
+					<div class="card-x">
+						<a href="/default/contents?type=courses&cid={{item.id}}">
+							<div class="img">
+								<img src="{{item.attrs.image.url}}" alt="">
+								<span class="span1"></span>
+								<span class="span2"></span>
+								<span class="span3"></span>
+							</div>
+						</a>
+						<div class="item">
+							<div>
+								<p class="title">
+									{{item.local.title}}
+								</p>
+							</div>
+							<div>
+								<a href="/default/contents?type=courses&cid={{item.id}}">
+									Read More
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>
+{% endcategories %}
+
+{% categories type="news"  limit="2" parent=null %}
+<section class="section6">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="events-title">
+					<span>Latest<br>
+						Events</span>
+				</div>
+			</div>
+			<div class="col-md-12">
+				<div class="items">
+					<div class="row itemContainer" id="itemContainer">
+						{% for item in categories %}
+							{% contents type="news"  category= item.id limit='1' sort='-position' %}
+							{% for content in contents %}
+								<div class="col-md-6 item news pb-5 bg-transparent">
+									<div class="card rounded-0 border-0 card bg-transparent">
+										<a href="default/content?id={{content.id}}">
+											<div class="img">
+												<img src="{{content.attrs.image.url}}" width="100%" alt="">
+											</div>
+										</a>
+										<div class="deadline">
+											<div class="date d-flex justify-content-start">{{content.local.date}}&nbsp;&nbsp;</div>
+											<div class="type text-capitalize d-flex justify-content-end">
+												<div class="dots">
+													<span class="dot dot-sm dot-success"></span>
+												</div>
+												<span>{{ content.categories | map(cat => cat.local.title) | join(', ') }}</span>
+											</div>
+										</div>
+										<div class="card-body">
+											<h5 class="card-title text-capitalize">{{content.local.title}}</h5>
+											<p class="card-text text-muted">{{content.local.excerpt}}</p>
+											<a href="default/content?id={{content.id}}" class="btn btn-discover">Read More</a>
+										</div>
+									</div>
+								</div>
+							{% endfor %}
+							{% endcontents %}
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{% endcategories %}
+
+
+{% contents type='testimonial' sort='position' limit='1' %}
+<section class="section7">
+	<div class="container">
+		<div class="row">
+			<div class="section-7-title col-md-12">
+				<p>Testimonials</p>
+			</div>
+		</div>
+		<div class="row-testimonials row">
+			<div class="col-md-12 pt-5">
+				{% for content in contents %}
+					<div class="row py-4">
+						<div class="col-md-5 text-center col1">
+							<div class="img">
+								<img src="{{content.attrs.image.url}}" alt="">
+								<span class="span1"></span>
+								<span class="span2"></span>
+								<span class="span3"></span>
+							</div>
+						</div>
+						<div class="col-md-7 col2">
+							<img src="public\images\comma.svg" class="py-3" alt=""><br>
+							<span>
+								<p>{{content.local.title}}</p>
+							</span>
+							<p class="description">{{content.local.excerpt}}</p>
+							<p class="py-2">
+								<em></em>
+							</p>
+							<p>
+								<em>{{content.attrs.name}}</em>
+							</p>
+							<em>
+								{{content.attrs.name}}<br>Position
+								{{content.attrs.position}}, Company
+								{{content.attrs.company}}
+							</em>
+							<p></p>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+		<a class="testiminial-button" href="{{ url('/default/contents', {type:'testimonial'}) }}">
+			See More
+		</a>
+	</div>
+</section>
+{% endcontents %}

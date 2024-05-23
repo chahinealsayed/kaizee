@@ -1,0 +1,66 @@
+{% contents type='contact' %}
+<section class="section-contact">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="connect">
+					<span>Let's Connect</span>
+				</div>
+			</div>
+			{% for content in contents %}
+				<div class="col-md-2"></div>
+				<div class="col-md-10">
+					<div class="regional">
+						<span>{{content.local.title}}</span>
+					</div>
+				</div>
+				<div class="col-md-2"></div>
+				<div class="col-md-5">
+					<div class="part1">
+						<div class="p1">
+							<span class="text-muted">Give Us A Call</span>
+						</div>
+						{% for item in content.attrs.cont %}
+							<a class="no-loader" href="tel:{{ item.phone  | split(' ') | join('')}}">
+								{{item.phone}}
+							</a><br>
+						{% endfor %}
+					</div>
+				</div>
+				<div class="col-md-5">
+					<div class="part1">
+						<div class="p1">
+							<span class="text-muted">Send An Email</span>
+						</div>
+						<a target="_blank" href="mailto:{{content.attrs.email}}">
+							<span>{{content.attrs.email}}</span>
+						</a>
+					</div>
+				</div>
+				<div class="col-md-2"></div>
+				<div class="col-md-5">
+					<div class="part1">
+						<div class="p1">
+							<span class="text-muted">Fax</span>
+						</div>
+						<a class="no-loader" href="tel:{{ content.attrs.fax  | split(' ') | join('')}}">
+							{{content.attrs.fax}}
+						</a>
+					</div>
+				</div>
+				<div class="col-md-5"></div>
+				<div class="col-md-2"></div>
+				<div class="col-md-10">
+					<div class="iframe">
+						{{ content.attrs.embed | raw }}
+						<div class="location-block">
+							<span>{{ content.attrs.location }}</span>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+		{{ 'website/contactform' | vue }}
+	</div>
+</section>
+{% endcontents %}

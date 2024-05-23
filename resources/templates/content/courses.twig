@@ -1,0 +1,128 @@
+{% content get('id') %}
+<section class="course-details">
+	<div class="course-details-container container">
+		<div class="course-details-title">
+			<p>Course Details</p>
+		</div>
+		<div class="reflecting-image">
+			<img src="{{content.attrs.image2.url}}" alt="">
+			<div class="layer-overlay"></div>
+		</div>
+		<div class="course-details-row row">
+			<div class="course-left-content col-lg-3 col-md-3">
+				<div class="image-holder">
+					<img src="{{content.attrs.image1.url}}" alt="">
+					<div class="delivered">
+						<div class="delivered-title">
+							Delivered
+						</div>
+						<div class="delivered-value">
+							<p>{{content.attrs.delivered}}</p>
+						</div>
+					</div>
+				</div>
+				<div class="course-tags">
+					<div class="tag status">
+						<div class="tag-title">
+							Current Status
+						</div>
+						<div class="tag-value">
+							<p>{{content.attrs.currentstatus}}</p>
+						</div>
+					</div>
+					<div class="tag topic">
+						<div class="tag-title">
+							Topics
+						</div>
+						<div class="tag-value">
+							<p>{{content.attrs.topic}}</p>
+						</div>
+					</div>
+					<div class="tag target-audience">
+						<div class="tag-title">
+							Target Audience
+						</div>
+						<div class="tag-value">
+							<p>{{content.attrs.audience}}</p>
+						</div>
+					</div>
+					<div class="tag duration">
+						<div class="tag-title">
+							Duration
+						</div>
+						<div class="tag-value">
+							{{content.attrs.duration}}
+						</div>
+					</div>
+
+					<div class="tag price">
+						<div class="tag-title">
+							Price
+						</div>
+						<div class="tag-value">
+							<p>{{content.attrs.price}}</p>
+						</div>
+					</div>
+
+					<div class="tag button-link site-button">
+						<a href="#">Take this course</a>
+					</div>
+				</div>
+			</div>
+			<div class="course-right-content col-lg-7 col-md-7">
+				<div class="course-text">
+					<div class="course-title">
+						{{content.local.title}}
+					</div>
+					<div class="course-description">
+						<p>{{content.attrs.description}}</p>
+					</div>
+				</div>
+				<div class="course-objectives">
+					<div class="course-objectives-title">
+						<p>Course Objectives</p>
+					</div>
+					<div class="objectives-holder">
+						{% for item in content.attrs.objectives %}
+							<div class="objective">
+								<p>{{item.objective}}</p>
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+				<div class="course-objectives">
+					<div class="course-objectives-title">
+						<p>Course Topics</p>
+					</div>
+					<div class="objectives-holder">
+						{% for item in content.attrs.topics %}
+							<div class="objective">
+								<p>{{item.topic}}</p>
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+				<div class="course-objectives">
+					<div class="course-objectives-title">
+						<p>Target Audience</p>
+					</div>
+					<div class="objectives-holder objectve-description">
+						<p>{{content.attrs.targetdetail}}</p>
+					</div>
+				</div>
+				<div class="course-objectives">
+					<div class="course-objectives-title">
+						<p>Duration</p>
+					</div>
+					<div class="objectives-holder objectve-description">
+						<p>{{content.attrs.durationdetail}}</p>
+					</div>
+				</div>
+				<div class="download-file site-button">
+					<a href="{{content.attrs.coursefile.url}}" target="_blank">DOWNLOAD THE FULL BROCHURE</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{% endcontent %}

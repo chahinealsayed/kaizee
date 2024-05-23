@@ -1,0 +1,119 @@
+.section-testimonial {
+  padding-top: 2rem;
+  margin-top: 4.5rem;
+  @media (max-width: 767px) {
+    margin-top: 2rem;
+  }
+  .container {
+    padding-left: 6rem;
+    padding-right: 6rem;
+    @media (max-width: 767px) {
+      padding-right: calc(var(--bs-gutter-x) * 0.5);
+      padding-left: calc(var(--bs-gutter-x) * 0.5);
+    }
+
+    .row {
+      &.parent-row {
+        // background: url("#{$imagesPath}/background.svg");
+        background-size: 100%;
+        .col-md-12 {
+          .title {
+            color: #0963bd;
+            font-size: 40px;
+            .dots {
+              .dot {
+                display: inline-block;
+                border-radius: 50%;
+                width: 50%;
+                background-color: #13a041;
+                height: 18px;
+                width: 18px;
+                margin: 6px;
+              }
+            }
+            @media (max-width: 767px) {
+              font-size: 32px;
+            }
+          }
+          .row {
+            .col-md-5 {
+              .img {
+                position: relative;
+                img {
+                  width: 50%;
+                  @media (max-width: 767px) {
+                    width: 60%;
+                  }
+                }
+                &::after {
+                  content: "";
+                  display: block;
+                  background-color: #13a041;
+                  width: 10px;
+                  height: 4rem;
+                  position: absolute;
+                  left: 25%;
+                  bottom: -1rem;
+                  @media (max-width: 767px) {
+                    display: none;
+                  }
+                }
+                .span1 {
+                  display: block;
+                  background-color: #13a041;
+                  width: 10px;
+                  height: 3rem;
+                  position: absolute;
+                  right: 25%;
+                  bottom: -1rem;
+                  @media (max-width: 767px) {
+                    display: none;
+                  }
+                }
+                .span2 {
+                  display: block;
+                  background-color: #13a041;
+                  width: 10px;
+                  height: 3rem;
+                  position: absolute;
+                  left: 25%;
+                  top: -1rem;
+                  @media (max-width: 767px) {
+                    display: none;
+                  }
+                }
+                .span3 {
+                  display: block;
+                  background-color: #13a041;
+                  width: 10px;
+                  height: 5rem;
+                  position: absolute;
+                  right: 25%;
+                  top: -1rem;
+                  @media (max-width: 767px) {
+                    display: none;
+                  }
+                }
+              }
+            }
+            .col-md-7 {
+              p {
+                @media (max-width: 767px) {
+                  text-align: justify;
+                }
+              }
+              img {
+                width: 80px;
+                height: 80px;
+              }
+              span {
+                font-size: 22px;
+                font-family: "cera-m";
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

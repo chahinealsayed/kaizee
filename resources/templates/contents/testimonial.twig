@@ -1,0 +1,68 @@
+{% contents type="testimonial" sort='position' %}
+<section class="section-testimonial">
+	<div class="container">
+		<div class="row parent-row">
+			<div class="col-md-12">
+				<div class="title d-flex text-capitalize">
+					<div class="dots">
+						<span class="dot dot-sm dot-success"></span>
+					</div>
+					&nbsp;Testimonials
+				</div>
+			</div>
+			{% for content in contents %}
+				<div class="col-md-12 pt-5">
+					{% if loop.index is odd %}
+						<div class="row py-4">
+							<div class="col-md-5 text-center col1">
+								{% if content.attrs.image.url != null %}
+								<div class="img">
+									<img src="{{content.attrs.image.url}}" alt="">
+									<span class="span1"></span>
+									<span class="span2"></span>
+									<span class="span3"></span>
+								</div>
+								{% else %}
+								{% endif %}	
+							</div>
+							<div class="col-md-7 col2">
+								<img src="public\images\comma.svg" class="py-3" alt=""><br>
+								<span>{{content.local.title}}
+								</span>
+								<p class="pt-2 text-muted">{{content.local.excerpt}}
+								</p>
+								<p class="py-2">
+									<em>{{content.attrs.name}}<br>Position
+										{{content.attrs.position}}, Company
+										{{content.attrs.company}}</em>
+								</p>
+							</div>
+						</div>
+					{% else %}
+						<div class="row py-4">
+							<div class="col-md-7 col3">
+								<img src="public\images\comma.svg" class="py-3" alt=""><br>
+								<span>{{content.local.title}}</span>
+								<p class="pt-2 text-muted">{{content.local.excerpt}}</p>
+								<p class="py-2">
+									<em>{{content.attrs.name}}<br>Position
+										{{content.attrs.position}}, Company
+										{{content.attrs.company}}</em>
+								</p>
+							</div>
+							<div class="col-md-5 col4 text-center">
+								<div class="img">
+									<img src="{{content.attrs.image.url}}" alt="">
+									<span class="span1"></span>
+									<span class="span2"></span>
+									<span class="span3"></span>
+								</div>
+							</div>
+						</div>
+					{% endif %}
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+</section>
+{% endcontents %}

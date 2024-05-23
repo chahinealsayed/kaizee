@@ -1,0 +1,92 @@
+.section-contact {
+  margin-top: 4.5rem;
+  @media (max-width: 767px) {
+    margin-top: 2rem;
+  }
+  .container {
+    padding-left: 6rem;
+    padding-right: 6rem;
+    @media (max-width: 767px) {
+      padding-right: calc(var(--bs-gutter-x) * 0.5);
+      padding-left: calc(var(--bs-gutter-x) * 0.5);
+    }
+    .row {
+      // background: url("#{$imagesPath}/background.svg");
+      background-size: 100%;
+      .col-md-12 {
+        .connect {
+          font-size: 40px;
+          color: #0963bd;
+          padding-top: 5rem;
+          @media (max-width: 767px) {
+            padding-top: 0;
+            font-size: 40px;
+          }
+        }
+      }
+      .col-md-10 {
+        .regional {
+          padding-top: 3rem;
+          padding-left: 28px;
+          font-size: 30px;
+          @media (max-width: 767px) {
+            padding-left: 0;
+            font-size: 22px;
+            padding-top: 2rem;
+          }
+        }
+        .iframe {
+          display: flex;
+          flex-direction: column;
+          iframe {
+            padding-left: 36px;
+            padding-top: 2rem;
+            border: none;
+            width: 100% !important;
+            height: 350px !important;
+            @media (max-width: 767px) {
+              padding-left: 0;
+            }
+          }
+          .location-block {
+            margin-left: 36px;
+            background-color: #09736e;
+            padding-top: 0.75rem;
+            width: 75%;
+            padding-bottom: 0.75rem;
+            color: #ffffff;
+            font-size: 15px;
+            @media (max-width: 767px) {
+              margin-left: 0;
+              width: 100%;
+              font-size: 12px;
+            }
+            span {
+              padding-left: 0.75rem;
+            }
+          }
+        }
+      }
+      .col-md-5 {
+        .part1 {
+          font-size: 28px;
+          padding-top: 1.5rem;
+          padding-left: 28px;
+          @media (max-width: 767px) {
+            padding-left: 0;
+            font-size: 24px;
+            padding-top: 1rem;
+          }
+          .p1 {
+            font-size: 19px;
+            font-family: "cera-light";
+          }
+          a {
+            text-decoration: none;
+            color: #000000;
+          }
+        }
+      }
+    }
+  }
+}

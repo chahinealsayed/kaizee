@@ -1,0 +1,85 @@
+{% content "cms.contents.default.services.1" %}
+<section class="section-services-1">
+	<img src="{{content.attrs.image.url}}" alt="Partners" class="image">
+	<div class="container">
+		<div class="row row1">
+			<div class="col-md-6">
+				<div class="service">
+					<span>{{content.local.title}}</span>
+				</div>
+				<div class="service">
+					<span>{{content.local.subtitle1}}</span>
+				</div>
+				<div class="site-button">
+					<a target="_blank" href="https://calendly.com/coach_ronyklayany/60min?back=1&amp;month=2023-06">Book A Session</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{% endcontent %}
+
+
+<section class="section-services-2" id="section2">
+	<div class="container">
+		<div class="row row2">
+			{% content "cms.contents.default.services.2" %}
+			<div class="section-2-text col-lg-6 col-md-6">
+				<div class="lorem">
+					<span>{{content.local.title}}</span>
+				</div>
+				<div class="paragraph">
+					<span>{{content.local.excerpt}}</span>
+				</div>
+			</div>
+			{% endcontent %}
+			<div class="section-2-image col-lg-5 col-md-5">
+				<img src="" alt="">
+			</div>
+			{% contents type="services" %}
+			{% for content in contents %}
+				<div class="col-md-4 card-col">
+					<div class="card">
+						<div class="card-header">
+							<div class="image-holder">
+								<img src="{{content.attrs.image.url}}" alt="">
+							</div>
+
+							<div class="card-title h5">{{content.local.title}}</div>
+						</div>
+						<div class="card-body">
+							<div class="card-text">{{content.local.excerpt}}</div>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+			{% endcontents %}
+		</div>
+	</div>
+</section>
+
+
+{% content "cms.contents.default.services.3" %}
+<section class="section-services-3">
+	<div class="container">
+		<div class="row row3">
+			<div class="section-3-text col-lg-5 col-md-5 ">
+				<div class="section-3-title">
+					{{content.local.title}}
+				</div>
+				<div class="section-3-text">
+					<p>{{content.local.excerpt}}</p>
+				</div>
+				<div class="site-button">
+					<a href="https://calendly.com/coach_ronyklayany/60min?back=1&amp;month=2023-06">Book A Session</a>
+				</div>
+			</div>
+			<div class="section-3-image col-lg-6 col-md-6 ">
+				<div class="image">
+					<img src="{{content.attrs.image.url}}" alt="">
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{% endcontent %}

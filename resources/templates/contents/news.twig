@@ -1,0 +1,55 @@
+{% content "cms.contents.default.news" %}
+
+<section class="section-news-1">
+	<img src="{{content.attrs.image.url}}" alt="Partners" class="image">
+	<div class="container">
+		<div class="row row1">
+			<div class="col-md-6">
+				<div class="event">
+					<span>{{content.local.title}}
+					</span>
+				</div>
+				<div class="stay-tuned">
+					<span>Stay tuned</span>
+				</div>
+				<div class="site-button">
+					<a href="https://calendly.com/coach_ronyklayany/60min?back=1&amp;month=2023-06">Book A Session</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+{% endcontent %}
+
+
+{% contents type="news" sort="position" category=get('cid') %}
+<section class="section-news-2">
+	<div class="container">
+		<div class="filter py-4">
+			<div class="row child-row ">
+				{% categories type="news"  limit="2" parent=null %}
+				{% for item in categories %}
+					<div class="cont col-lg-4 col-md-4 col-sm-4 ajax-filter">
+						<a href="javascript:void(0)" class="category-link" data-cid="{{ item.id }}" style="text-decoration: none;">
+							<div class="d-flex flex-row">
+								<div class="btn btn-filter nofloat text-capitalize events">
+									{{ item.local.title }}</div>
+								{% contents type="news" category= item.id  %}
+								{% for item in contents %}
+									{% if loop.index == 1 %}
+										<div class="counterxx text-end">{{loop.length}}</div>
+									{% endif %}
+								{% endfor %}
+								{% endcontents %}
+							</div>
+						</a>
+					</div>
+				{% endfor %}
+				{% endcategories %}
+			</div>
+		</div>
+		{{'website/news' | vue}}
+	</div>
+</section>
+{% endcontents %}

@@ -1,0 +1,63 @@
+{% content "cms.contents.default.courses" %}
+<section class="section-courses-1">
+	<img src="{{content.attrs.image.url}}" alt="Courses" class="image">
+	<div class="container">
+		<div class="row row1">
+			<div class="col-md-6">
+				<div class="course">
+					<span>{{content.local.title}}</span>
+				</div>
+				<div class="fit">
+					<span>{{content.local.subtitle1}}</span>
+				</div>
+				<div class="site-button">
+					<a target="_blank" href="https://calendly.com/coach_ronyklayany/60min?back=1&amp;month=2023-06">Book A Session</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{% endcontent %}
+
+{% contents type="courses" sort="position" category=get('cid') %}
+<section class="background-lines">
+	<div class="category">
+		<div class="container">
+			<div class="row child-row py-md-3">
+				<ul class="nav nav-tabs border-0" id="myTab" role="tablist">
+					{% categories type="courses"  limit="3" parent=null %}
+					{% for item in categories %}
+						<a href="javascript:void(0)" class="category-link" data-cid="{{ item.id }}">
+							<li class="nav-item col-md-4 col-sm-4 col-12 bg-transparent" role="presentation">
+								<button class="nav-link text-dark border-0 bg-transparent taxonomy-button buttonfront-line" type="button" data-slug="front-line" id="taxonomy-button-id12">
+									<span>{{ item.local.title }}</span>
+									<div class="bottom"></div>
+								</button>
+							</li>
+						</a>
+					{% endfor %}
+					{% endcategories %}
+				</ul>
+			</div>
+			{{'website/courses' | vue}}
+		</div>
+	</div>
+</section>
+
+
+<script>
+	document.addEventListener("DOMContentLoaded", function () {
+const categoryLinks = document.querySelectorAll(".category-link");
+
+categoryLinks.forEach(function (link) {
+link.addEventListener("click", function (event) {
+event.preventDefault();
+categoryLinks.forEach(function (link) {
+link.classList.remove("active");
+});
+link.classList.add("active");
+});
+});
+});
+</script>
+{% endcontents %}

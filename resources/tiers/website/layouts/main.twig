@@ -1,0 +1,200 @@
+{% extends '@resources/tiers/_base.twig' %}
+{% block html %}
+	{{ use('app/widgets/PageLoader') }}
+	{% set pageLoader = page_loader_widget() %}
+	{{ parent() }}
+{% endblock %}
+{% block body %}
+	{{ 'main-layout' | layoutClass }}
+	{{ pageLoader | raw }}
+	{{ parent() }}
+{% endblock %}
+
+
+{% set externals = [
+    {
+        'label': 'Youtube',
+		'url': 'social.youtube' | setting('#'),
+    },
+	{
+        'label': 'Linkedin',
+		'url': 'social.linkedin' | setting('#'),
+    },
+	{
+        'label': 'Facebook',
+		'url': 'social.facebook' | setting('#'),
+    },
+	{
+        'label': 'Instagram',
+		'url': 'social.instagram' | setting('#'),
+    },
+] %}
+
+{% block content %}
+	{% if isMobile() or isTablet() %}
+		<div class="mobile-header container">
+			<div class="d-flex justify-content-between pb-2">
+				<a href="/"><img src="public/images/kaizee.png" width="150px" style="padding-top: 1rem;" alt=""></a>
+				{# {{ "" | link('/default/index', {}, {class: 'logo'}) }} #}
+				{{'website/sidemenu' | vue({list : sideMenu(), externals:externals})}}
+			</div>
+		</div>
+	{% else %}
+		<section class="header-section">
+			<header class="header-wrapper container">
+				<div class="row">
+					<div class="menu-wrapper">
+						<div class="menu">
+							<a href={{ url('default/index') }}>
+								<img src="public/images/kaizee.png" width="110px" alt="">
+							</a>
+							{{ "Meet&nbspYour&nbspCoach" | link('/default/content',{id:'cms.contents.default.coaching.1'}) }}
+							{{ "Coaching&nbspServices" | link('/default/content',{id:'cms.contents.default.services.1'}) }}
+							{{ "Courses" | link('/default/contents',{type:'courses'}) }}
+							{{ "Testimonials" | link('/default/contents',{type:'testimonial'}) }}
+							{{ "News&nbsp&&nbspEvents" | link('/default/contents',{type:'news'}) }}
+							{{ "Get&nbspIn&nbspTouch" | link('/default/contents',{type:'contact'}) }}
+						</div>
+						<div class='socials'>
+							<div class="d-flex justify-content-center aling-items-center gap-2">
+								<a target="_blank" href="{{'social.youtube' | setting('#')}}">
+									{{'website/youtube' | vue}}
+								</a>
+								<a target="_blank" href="{{'social.linkedin' | setting('#')}}">
+									{{'website/linkedin' | vue}}
+								</a>
+								<a target="_blank" href="{{'social.facebook' | setting('#')}}">
+									{{'website/facebook' | vue}}
+								</a>
+								<a target="_blank" href="{{'social.instagram' | setting('#')}}">
+									{{'website/instagram' | vue}}
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</header>
+		</section>
+	{% endif %}
+	<main class="body-wrapper">
+		{{ content | raw }}
+	</main>
+	<footer class="footer-wrapper">
+		<div class="img">
+			{% if isMobile() or isTablet() %}
+				<img src="public\images\footertwo.png" alt="">
+			{% else %}
+				<img src="public\images\footerImage.png" alt="">
+			{% endif %}
+			<div class="container">
+				<div class="row footer-x">
+					<div class="col-md-4 col-sm-12">
+						<div class="subscription">
+							<span>Newsletter Subscription</span>
+							<p>Be alerted with what's new!</p>
+						</div>
+						<form action="">
+							<input type="text" class="form-control" placeholder="email@domain.com">
+							<div class="submit">
+								<button value="1" type="submit" name="subscribe" class="btn ">
+									<span class="newsletters-button-label">Subscribe</span>
+								</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container pt-5">
+			<div class="row">
+				<div class="col-lg-2 col-4 footer-one">
+					<img src="public\images\kaizee.png" width="100%" alt="">
+					<div class="social-media">
+						<div class="icon">
+							<a href=" https://www.youtube.com/">
+								<img src=" https://kaizee.com/beta/wp-content/uploads/2022/06/youtube.svg" alt="">
+							</a>
+						</div>
+						<div class="icon">
+							<a href=" https://www.linkedin.com/login">
+								<img src=" https://kaizee.com/beta/wp-content/uploads/2022/06/linkedin.svg" alt="">
+							</a>
+						</div>
+						<div class="icon">
+							<a href=" https://www.facebook.com/">
+								<img src="https://kaizee.com/beta/wp-content/uploads/2022/06/facebook.svg" alt="">
+							</a>
+						</div>
+						<div class="icon">
+							<a href=" https://www.instagram.com/?hl=en">
+								<img src=" https://kaizee.com/beta/wp-content/uploads/2022/06/instagram.svg" alt="">
+							</a>
+						</div>
+					</div>
+				</div>
+				{% if isMobile() or isTablet() %}
+					{% else %}
+						<div class="col-lg-2 col-4"></div>
+				{% endif %}
+				<div class="col-lg-2 col-4 footer-two">
+					<div class="container-menus">
+						<ul>
+							<li>{{ "Meet&nbspYour&nbspCoach" | link('/default/content',{id:'cms.contents.default.coaching.1'}) }}</li>
+							<li>
+								{{ "Coaching&nbspServices" | link('/default/content',{id:'cms.contents.default.services.1'}) }}
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				{% if isMobile() or isTablet() %}
+					{% else %}
+						<div class="col-lg-2 col-4 footer-three">
+							<div class="container-menus">
+								<ul>
+									<li>{{ "Testimonials" | link('/default/contents',{type:'testimonial'}) }}</li>
+								</ul>
+							</div>
+						</div>
+				{% endif %}
+
+				<div class="col-lg-2 col-4 footer-four">
+					<div class="container-menus">
+						<ul>
+							<li>
+								{{ "Contact&nbspUs" | link('/default/contents',{type:'contact'}) }}
+							</li>
+							<li>
+								{{ "News&nbsp&&nbspEvents" | link('/default/contents',{type:'news'}) }}
+							</li>
+							{% if isMobile() or isTablet() %}
+								<li>
+									{{ "Testimonials" | link('/default/contents',{type:'testimonial'}) }}
+								</li>
+								{% else %}
+							{% endif %}
+						</ul>
+					</div>
+				</div>
+				{% if isMobile() or isTablet() %}
+					{% else %}
+						<div class="col-lg-2 col-4"></div>
+				{% endif %}
+			</div>
+			<div class="row pt-4">
+				<div class="col-xs-10 col-sm-9 col-md-10 footers-five">
+					<p>All right reserved. Rony Klayany ©2023.
+						<b>Terms and Conditions</b>
+					</p>
+				</div>
+				<div class="col-xs-2 col-sm-3 col-md-2 footers-six">
+					<a target="_blank" class="text-decoration-none" href="https://codendot.com/">
+						<p class="text-md-end">Powered by
+							<b>CodenDot</b>
+						</p>
+					</a>
+				</div>
+			</div>
+		</div>
+	</footer>
+{% endblock %}
